@@ -4,6 +4,10 @@ use fs_err as fs;
 use crate::error::CrateResult;
 
 pub async fn copy_file(from: &Path, to: &Path) -> CrateResult<()> {
+    if from.is_dir() {
+        return Ok(());
+    }
+
     let destination_parent = to.parent().unwrap_or(Path::new("/"));
     if !destination_parent.exists() {
         fs::create_dir_all(destination_parent)?;   
