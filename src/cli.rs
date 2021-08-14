@@ -30,7 +30,7 @@ pub fn validate_args() -> CrateResult<CliArgs> {
         true if !args.destination.is_dir() => {
             // Supplied destination exists but is not a directory
             return Err(Error::DestinationIsNotADirectory(args.destination));
-        },
+        }
         false => {
             // The destination directory does not exist,
             // so we must create it.

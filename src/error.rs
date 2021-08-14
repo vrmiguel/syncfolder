@@ -11,7 +11,7 @@ pub enum Error {
     #[error("IO: `{0}`")]
     Io(#[from] std::io::Error),
     #[error("`{0}`")]
-    Walkdir(#[from] walkdir::Error)
+    Walkdir(#[from] walkdir::Error),
 }
 
 // For some reason argh::FromArg starts to fail when

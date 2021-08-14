@@ -1,12 +1,10 @@
-mod error;
 mod cli;
+mod error;
 mod file_utils;
 
-use cli::CliArgs;
 use file_utils::backup_folder;
 
-use crate::file_utils::dir_walk;
-use crate::error::{CrateResult};
+use crate::error::CrateResult;
 
 fn main() {
     // Doing this so a nicer error message gets printed out

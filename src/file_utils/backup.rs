@@ -1,5 +1,5 @@
-use std::path::Path;
 use fs_err as fs;
+use std::path::Path;
 
 use crate::{cli::CliArgs, error::CrateResult};
 
@@ -11,7 +11,6 @@ fn backup_is_updated(original: &Path, backup: &Path) -> CrateResult<bool> {
 }
 
 async fn backup_file(absolute_path: &Path, relative_path: &Path, dest: &Path) -> CrateResult<()> {
-
     // The same file name, but on the destination directory
     let file_in_dest = dest.join(relative_path);
 
@@ -26,8 +25,8 @@ async fn backup_file(absolute_path: &Path, relative_path: &Path, dest: &Path) ->
 
     // We must create (or update) the backup
     fs::copy(absolute_path, file_in_dest)?;
-    
-    // TODO: set the backup's modified date to be equal to 
+
+    // TODO: set the backup's modified date to be equal to
     // the original file's modified date
 
     Ok(())
@@ -47,7 +46,7 @@ pub async fn backup_folder(args: &CliArgs) -> CrateResult<()> {
         };
 
         if let Err(err) = backup_file(&*path, path_relative, dest).await {
-            eprintln!("Error when backing up {}: {}", path.display(), err);
+            eprintln!("{}", err);
         }
     }
 
