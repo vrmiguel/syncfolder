@@ -3,7 +3,7 @@ use std::path::Path;
 
 use crate::{cli::CliArgs, error::CrateResult};
 
-use super::dir_walk;
+use super::{copy_file, dir_walk};
 
 fn backup_is_updated(original: &Path, backup: &Path) -> CrateResult<bool> {
     // TODO: add a better check later on
@@ -24,10 +24,7 @@ async fn backup_file(absolute_path: &Path, relative_path: &Path, dest: &Path) ->
     }
 
     // We must create (or update) the backup
-    fs::copy(absolute_path, file_in_dest)?;
-
-    // TODO: set the backup's modified date to be equal to
-    // the original file's modified date
+    copy_file(absolute_path, &*&file_in_dest).await?;
 
     Ok(())
 }
