@@ -9,7 +9,9 @@ pub enum Error {
     #[error("`{0}` is not a Directory")]
     DestinationIsNotADirectory(PathBuf),
     #[error("IO: `{0}`")]
-    Io(#[from] std::io::Error)
+    Io(#[from] std::io::Error),
+    #[error("`{0}`")]
+    Walkdir(#[from] walkdir::Error)
 }
 
 // For some reason argh::FromArg starts to fail when
