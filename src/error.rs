@@ -2,11 +2,11 @@ use std::path::PathBuf;
 
 #[derive(thiserror::Error, Debug)]
 pub enum Error {
-    #[error("origin Directory (`{0}`) does not exist")]
+    #[error("origin directory (`{0}`) does not exist")]
     OriginDoesNotExist(PathBuf),
-    #[error("`{0}` is not a Directory")]
+    #[error("`{0}` is not a directory")]
     OriginIsNotADirectory(PathBuf),
-    #[error("`{0}` is not a Directory")]
+    #[error("`{0}` is not a directory")]
     DestinationIsNotADirectory(PathBuf),
     #[error("IO: `{0}`")]
     Io(#[from] std::io::Error),
